@@ -8,7 +8,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEPLOY', default=['localhost', '127.0.0.
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if env.str('SERVICION_BD', default='layerbase') == 'layerbase':
+if env('SERVICION_BD', default='layerbase') == 'layerbase':
     DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.mysql',

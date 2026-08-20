@@ -30,6 +30,3 @@ else:
         'PORT': env('MYSQL_PORT', default='3306'),
     }
 }
-
-STATIC_ROOT='/home/dominio/public_html/static'
-MEDIA_ROOT='/home/dominio/public_html/media'

@@ -102,3 +102,71 @@ class ImageCompressionTest(TestCase):
         self.assertEqual(len(files_in_dir), 1)
 
 
+class SoftDeleteRestoreTest(TestCase):
+    def test_restore_soft_deleted_category_on_recreation(self):
+        # 1. Crear y eliminar lógicamente una categoría
+        cat1 = Category.objects.create(category_name="Electrónica", description="Descripción antigua")
+        cat1_id = cat1.id
+        cat1.delete()
+
+        self.assertTrue(Category.objects.get(id=cat1_id).is_deleted)
+
+        # 2. Intentar crear una nueva categoría con el mismo nombre único
+        new_cat = Category(category_name="Electrónica", description="Descripción nueva")
+        new_cat.full_clean()
+        new_cat.save()
+
+        # 3. Verificar que se restauró el registro original (mismo ID) y se actualizaron los campos
+        restored = Category.objects.get(id=cat1_id)
+        self.assertFalse(restored.is_deleted)
+        self.assertIsNone(restored.deleted_at)
+        self.assertEqual(restored.description, "Descripción nueva")
+
+        # 4. Verificar que no se creó un registro duplicado
+        self.assertEqual(Category.objects.filter(category_name="Electrónica").count(), 1)
+
+    def test_restore_via_admin_form(self):
+        """Verifica la restauración y actualización de un registro borrado a través del Django Admin."""
+        from django.contrib.admin.sites import AdminSite
+        from apps.product.admin import CategoryAdmin
+
+        cat = Category.objects.create(category_name="Muebles", description="Vieja descripción")
+        cat_id = cat.id
+        cat.delete()
+
+        admin_site = AdminSite()
+        category_admin = CategoryAdmin(Category, admin_site)
+
+        # Obtener el formulario del admin para crear una nueva categoría
+        FormClass = category_admin.get_form(None)
+        form = FormClass(data={'category_name': 'Muebles', 'description': 'Descripción desde Admin'})
+
+        self.assertTrue(form.is_valid(), f"Errores en el formulario de Admin: {form.errors}")
+        saved_obj = form.save()
+
+        self.assertEqual(saved_obj.id, cat_id)
+        restored = Category.objects.get(id=cat_id)
+        self.assertFalse(restored.is_deleted)
+        self.assertEqual(restored.description, "Descripción desde Admin")
+        self.assertEqual(Category.objects.filter(category_name="Muebles").count(), 1)
+
+    def test_restore_via_drf_api(self):
+        """Verifica la restauración y actualización de un registro borrado a través del endpoint de la API REST."""
+        from rest_framework.test import APIClient
+        client = APIClient()
+
+        cat = Category.objects.create(category_name="Herramientas", description="Sin descripción")
+        cat_id = cat.id
+        cat.delete()
+
+        response = client.post('/api/products/categories/', {'category_name': 'Herramientas', 'description': 'Herramientas de construcción'}, format='json')
+        self.assertEqual(response.status_code, 201, f"Error API: {response.data}")
+
+        restored = Category.objects.get(id=cat_id)
+        self.assertFalse(restored.is_deleted)
+        self.assertEqual(restored.description, "Herramientas de construcción")
+        self.assertEqual(Category.objects.filter(category_name="Herramientas").count(), 1)
+
+
+
+

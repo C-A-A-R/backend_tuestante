@@ -13,7 +13,7 @@ ALLOWED_HOSTS = ['*']
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-bd_local= 'mysql_nube2'
+bd_local= 'mysql_cpanel'
 
 if bd_local == 'mysql':
     DATABASES = {
@@ -48,6 +48,18 @@ elif bd_local == 'mysql_nube2':
             'PORT': '20415',
         }
     }
+elif bd_local == 'mysql_cpanel':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'tuestante',
+            'USER': 'tuestante',
+            'PASSWORD': 'fwRwL3GqRmAHrBy',
+            'HOST': 'bectronix.net',
+            'PORT': '3306',
+        }
+    }
+
 else:
     DATABASES = {
     'default': {

@@ -40,6 +40,7 @@ THIRD_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'simple_history',
     'drf_yasg',
+    'storages',
     # 'import_export',
 ]
 

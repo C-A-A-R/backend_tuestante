@@ -33,21 +33,21 @@ else:
 }
 
 # --- Configuración de almacenamiento Multimedia vía FTP ---
-# settings/production.py
 
-MEDIA_URL = env('MEDIA_BASE_URL', default='https://media.tudominio.com/')
+# Codificar usuario y password para evitar conflictos con '@' y ':'
+FTP_USER = urllib.parse.quote(env('FTP_USER', default=''))
+FTP_PASS = urllib.parse.quote(env('FTP_PASSWORD', default=''))
+FTP_HOST = env('FTP_HOST', default='localhost')
+FTP_PORT = env('FTP_PORT', default='21')
+MEDIA_URL = env('MEDIA_BASE_URL', default='https://imagenes-tu-estante.tuestante.com/')
 
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.ftp.FTPStorage",
         "OPTIONS": {
-            "host": env('FTP_HOST'),
-            "port": int(env('FTP_PORT', default=21)),
-            "user": env('FTP_USER'),
-            "password": env('FTP_PASSWORD'),
+            # Debe ser estrictamente la URL armada:
+            "location": f"ftp://{FTP_USER}:{FTP_PASS}@{FTP_HOST}:{FTP_PORT}/",
             "base_url": MEDIA_URL,
-            # 'location' es el subdirectorio remoto relativo al login FTP (dejar vacío si el usuario ya inicia en la raíz)
-            "location": "",
         },
     },
     "staticfiles": {

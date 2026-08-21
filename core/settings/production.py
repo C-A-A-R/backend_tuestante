@@ -1,5 +1,6 @@
 from .base import *
 import pymysql
+import urllib.parse
 
 pymysql.install_as_MySQLdb()
 

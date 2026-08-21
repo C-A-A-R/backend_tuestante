@@ -6,6 +6,17 @@ from ftplib import FTP_TLS
 
 pymysql.install_as_MySQLdb()
 
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEPLOY', default=['localhost', '127.0.0.1', 'backend-tuestante.onrender.com'])
+
+CORS_ALLOWED_ORIGINS = env.list(
+    'CORS_ALLOWED_ORIGINS',
+    default=[
+        "https://tuestante.com",
+        "https://www.tuestante.com",
+        "backend-tuestante.onrender.com"
+    ]
+)
+
 CORS_ALLOW_ALL_ORIGINS = env.bool('CORS_ALLOW_ALL_ORIGINS', default=False)
 CORS_ALLOW_CREDENTIALS = True
 

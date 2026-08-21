@@ -27,7 +27,7 @@ class CategoryAdmin(BaseAdmin):
         'updated_at'
     )
     search_fields = ('category_name', 'description')
-    list_filter = ('created_at')
+    list_filter = ('created_at',)
     ordering = ('id',)
 
 
@@ -43,7 +43,7 @@ class ProductTypeAdmin(BaseAdmin):
         'updated_at'
     )
     search_fields = ('product_type_name', 'description')
-    list_filter = ('created_at')
+    list_filter = ('created_at',)
     ordering = ('id',)
 
 
@@ -82,7 +82,7 @@ class ProductColorImageAdmin(BaseAdmin):
 
     list_display = ('product', 'color_hex', 'color_name', 'color_image', 'created_at')
     search_fields = ('product__product_name', 'color_hex', 'color_name')
-    list_filter = ('created_at')
+    list_filter = ('created_at',)
     ordering = ('id',)
 
 
@@ -92,6 +92,6 @@ class ProductAngleImageAdmin(BaseAdmin):
 
     list_display = ('product', 'angle', 'image', 'created_at')
     search_fields = ('product__product_name', 'angle')
-    list_filter = ('created_at')
+    list_filter = ('created_at',)
     ordering = ('id',)
 

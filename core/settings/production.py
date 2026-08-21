@@ -1,6 +1,6 @@
 from .base import *
 import pymysql
-import urllib.parse
+from urllib.parse import quote
 
 pymysql.install_as_MySQLdb()
 
@@ -33,24 +33,67 @@ else:
 }
 
 # --- Configuración de almacenamiento Multimedia vía FTP ---
+# =========================================================
+# FTP / FTPS
+# =========================================================
 
-# Codificar usuario y password para evitar conflictos con '@' y ':'
-FTP_USER = urllib.parse.quote(env('FTP_USER', default=''))
-FTP_PASS = urllib.parse.quote(env('FTP_PASSWORD', default=''))
-FTP_HOST = env('FTP_HOST', default='localhost')
-FTP_PORT = env('FTP_PORT', default='21')
-MEDIA_URL = env('MEDIA_BASE_URL', default='https://imagenes-tu-estante.tuestante.com/')
+FTP_USER = env("FTP_USER").strip()
+FTP_PASSWORD = env("FTP_PASSWORD")
+FTP_HOST = env("FTP_HOST").strip()
+FTP_PORT = env("FTP_PORT", default="21").strip()
+
+
+# Codificar caracteres especiales para la URL
+FTP_USER_ENCODED = quote(
+    FTP_USER,
+    safe=""
+)
+
+FTP_PASSWORD_ENCODED = quote(
+    FTP_PASSWORD,
+    safe=""
+)
+
+
+# FTPS EXPLÍCITO
+FTP_LOCATION = (
+    f"ftps://"
+    f"{FTP_USER_ENCODED}:"
+    f"{FTP_PASSWORD_ENCODED}@"
+    f"{FTP_HOST}:"
+    f"{FTP_PORT}/"
+)
+
+
+# =========================================================
+# MEDIA
+# =========================================================
+
+MEDIA_URL = env(
+    "MEDIA_BASE_URL",
+    default="https://imagenes-tu-estante.tuestante.com/"
+)
+
+
+# =========================================================
+# STORAGE
+# =========================================================
 
 STORAGES = {
+
     "default": {
         "BACKEND": "storages.backends.ftp.FTPStorage",
+
         "OPTIONS": {
-            # Debe ser estrictamente la URL armada:
-            "location": f"ftp://{FTP_USER}:{FTP_PASS}@{FTP_HOST}:{FTP_PORT}/",
+            "location": FTP_LOCATION,
             "base_url": MEDIA_URL,
         },
     },
+
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "BACKEND": (
+            "django.contrib.staticfiles.storage."
+            "StaticFilesStorage"
+        ),
     },
 }

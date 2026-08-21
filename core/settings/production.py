@@ -1,8 +1,5 @@
 from .base import *
 import pymysql
-from urllib.parse import quote
-import os
-from ftplib import FTP_TLS
 
 pymysql.install_as_MySQLdb()
 
@@ -13,7 +10,9 @@ CORS_ALLOWED_ORIGINS = env.list(
     default=[
         "https://tuestante.com",
         "https://www.tuestante.com",
-        "backend-tuestante.onrender.com"
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://backend-tuestante.onrender.com"
     ]
 )
 

@@ -33,26 +33,24 @@ else:
 }
 
 # --- Configuración de almacenamiento Multimedia vía FTP ---
-FTP_USER = urllib.parse.quote_plus(env('FTP_USER', default=''))
-FTP_PASS = urllib.parse.quote_plus(env('FTP_PASSWORD', default=''))
-FTP_HOST = env('FTP_HOST', default='localhost')
-FTP_PORT = env('FTP_PORT', default='21')
+# settings/production.py
+
 MEDIA_URL = env('MEDIA_BASE_URL', default='https://media.tudominio.com/')
 
-# django-storages (Django >= 4.2)
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.ftp.FTPStorage",
         "OPTIONS": {
-            "location": f"ftp://{FTP_USER}:{FTP_PASS}@{FTP_HOST}:{FTP_PORT}/",
+            "host": env('FTP_HOST'),
+            "port": int(env('FTP_PORT', default=21)),
+            "user": env('FTP_USER'),
+            "password": env('FTP_PASSWORD'),
             "base_url": MEDIA_URL,
+            # 'location' es el subdirectorio remoto relativo al login FTP (dejar vacío si el usuario ya inicia en la raíz)
+            "location": "",
         },
     },
     "staticfiles": {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
-
-# Compatibilidad para Django <= 4.1 (si aplica a tu versión)
-DEFAULT_FILE_STORAGE = "storages.backends.ftp.FTPStorage"
-FTP_STORAGE_LOCATION = f"ftp://{FTP_USER}:{FTP_PASS}@{FTP_HOST}:{FTP_PORT}/"

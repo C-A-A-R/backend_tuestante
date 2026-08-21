@@ -1,6 +1,8 @@
 from .base import *
 import pymysql
 from urllib.parse import quote
+import os
+from ftplib import FTP_TLS
 
 pymysql.install_as_MySQLdb()
 
@@ -33,37 +35,47 @@ else:
 }
 
 # --- Configuración de almacenamiento Multimedia vía FTP ---
-# =========================================================
-# FTP / FTPS
-# =========================================================
-
 FTP_USER = env("FTP_USER").strip()
 FTP_PASSWORD = env("FTP_PASSWORD")
 FTP_HOST = env("FTP_HOST").strip()
 FTP_PORT = env("FTP_PORT", default="21").strip()
 
 
-# Codificar caracteres especiales para la URL
-FTP_USER_ENCODED = quote(
-    FTP_USER,
-    safe=""
-)
-
-FTP_PASSWORD_ENCODED = quote(
-    FTP_PASSWORD,
-    safe=""
-)
-
-
-# FTPS EXPLÍCITO
 FTP_LOCATION = (
     f"ftps://"
-    f"{FTP_USER_ENCODED}:"
-    f"{FTP_PASSWORD_ENCODED}@"
+    f"{FTP_USER}:"
+    f"{FTP_PASSWORD}@"
     f"{FTP_HOST}:"
     f"{FTP_PORT}/"
 )
 
+
+host = os.environ["FTP_HOST"]
+port = int(os.environ.get("FTP_PORT", "21"))
+user = os.environ["FTP_USER"]
+password = os.environ["FTP_PASSWORD"]
+
+ftp = FTP_TLS()
+
+print("Conectando...")
+ftp.connect(host, port, timeout=15)
+
+print("Conexión TCP establecida")
+
+ftp.login(user, password)
+
+print("Login correcto")
+
+ftp.prot_p()
+
+print("Canal de datos TLS protegido")
+
+print("Directorio actual:")
+print(ftp.pwd())
+
+ftp.quit()
+
+print("Conexión cerrada")
 
 # =========================================================
 # MEDIA
@@ -75,15 +87,10 @@ MEDIA_URL = env(
 )
 
 
-# =========================================================
-# STORAGE
-# =========================================================
 
 STORAGES = {
-
     "default": {
         "BACKEND": "storages.backends.ftp.FTPStorage",
-
         "OPTIONS": {
             "location": FTP_LOCATION,
             "base_url": MEDIA_URL,

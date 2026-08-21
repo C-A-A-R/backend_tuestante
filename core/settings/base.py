@@ -134,11 +134,19 @@ DATE_INPUT_FORMATS = [
     '%Y-%m-%d',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-    "http://localhost:3000",
-    "http://localhost:5500",
-]
+CORS_ALLOWED_ORIGINS = env.list(
+    'CORS_ALLOWED_ORIGINS',
+    default=[
+        "http://localhost:8000",
+        "http://localhost:3000",
+        "http://localhost:5500",
+        "https://tuestante.com",
+        "https://www.tuestante.com",
+    ]
+)
+
+CORS_ALLOW_ALL_ORIGINS = env.bool('CORS_ALLOW_ALL_ORIGINS', default=False)
+CORS_ALLOW_CREDENTIALS = env.bool('CORS_ALLOW_CREDENTIALS', default=True)
 
 SIMPLE_JWT = {
     # Access token corto para reducir la ventana de exposición si se filtra

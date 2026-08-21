@@ -6,7 +6,21 @@ from ftplib import FTP_TLS
 
 pymysql.install_as_MySQLdb()
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEPLOY', default=['localhost', '127.0.0.1'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEPLOY', default=['localhost', '127.0.0.1', 'backend-tuestante.onrender.com', '*'])
+
+CORS_ALLOWED_ORIGINS = env.list(
+    'CORS_ALLOWED_ORIGINS',
+    default=[
+        "https://tuestante.com",
+        "https://www.tuestante.com",
+        "http://localhost:8000",
+        "http://localhost:3000",
+        "http://localhost:5500",
+    ]
+)
+
+CORS_ALLOW_ALL_ORIGINS = env.bool('CORS_ALLOW_ALL_ORIGINS', default=False)
+CORS_ALLOW_CREDENTIALS = True
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -35,6 +49,10 @@ else:
 }
 
 # --- Configuración de almacenamiento Multimedia vía FTP ---
+# =========================================================
+# FTPS
+# =========================================================
+
 FTP_USER = env("FTP_USER").strip()
 FTP_PASSWORD = env("FTP_PASSWORD")
 FTP_HOST = env("FTP_HOST").strip()
@@ -50,33 +68,6 @@ FTP_LOCATION = (
 )
 
 
-host = os.environ["FTP_HOST"]
-port = int(os.environ.get("FTP_PORT", "21"))
-user = os.environ["FTP_USER"]
-password = os.environ["FTP_PASSWORD"]
-
-ftp = FTP_TLS()
-
-print("Conectando...")
-ftp.connect(host, port, timeout=15)
-
-print("Conexión TCP establecida")
-
-ftp.login(user, password)
-
-print("Login correcto")
-
-ftp.prot_p()
-
-print("Canal de datos TLS protegido")
-
-print("Directorio actual:")
-print(ftp.pwd())
-
-ftp.quit()
-
-print("Conexión cerrada")
-
 # =========================================================
 # MEDIA
 # =========================================================
@@ -87,6 +78,9 @@ MEDIA_URL = env(
 )
 
 
+# =========================================================
+# STORAGE
+# =========================================================
 
 STORAGES = {
     "default": {

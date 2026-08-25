@@ -46,7 +46,6 @@ class ProductSerializer(serializers.ModelSerializer):
     product_type_detail = ProductTypeSerializer(source='product_type', read_only=True)
     color_images = serializers.SerializerMethodField()
     angle_images = serializers.SerializerMethodField()
-    is_deleted = serializers.SerializerMethodField()
 
     def get_color_images(self, obj):
         active_images = [img for img in obj.color_images.all() if not getattr(img, 'is_deleted', False)]
@@ -54,10 +53,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def get_angle_images(self, obj):
         active_images = [img for img in obj.angle_images.all() if not getattr(img, 'is_deleted', False)]
-        return ProductAngleImageSerializer(active_images, many=True, context=self.context).data
-
-    def get_is_deleted(self, obj):
-        active_images = [img for img in obj.is_deleted.all() if not getattr(img, 'is_deleted', False)]
         return ProductAngleImageSerializer(active_images, many=True, context=self.context).data
 
     class Meta:
@@ -83,7 +78,6 @@ class ProductSerializer(serializers.ModelSerializer):
             'angle_images',
             'created_at',
             'updated_at'
-            'is_deleted'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
 

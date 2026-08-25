@@ -1,0 +1,179 @@
+[
+  {
+    "id": 2,
+    "categories": [2],
+    "categories_detail": [
+      {
+        "id": 2,
+        "category_name": "Gimnasio",
+        "description": "Lockers y custodia de pertenencias para gimnasios, centros deportivos y club house.",
+        "category_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/category/115a0fae63434ce88c5ae9ee8722c2a0.webp",
+        "created_at": "2026-08-21",
+        "updated_at": "2026-08-21"
+      }
+    ],
+    "category_detail": {
+      "id": 2,
+      "category_name": "Gimnasio",
+      "description": "Lockers y custodia de pertenencias para gimnasios, centros deportivos y club house.",
+      "category_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/category/115a0fae63434ce88c5ae9ee8722c2a0.webp",
+      "created_at": "2026-08-21",
+      "updated_at": "2026-08-21"
+    },
+    "product_type": 2,
+    "product_type_detail": {
+      "id": 2,
+      "product_type_name": "Locker Banca",
+      "description": "Mueble metálico en bloque de nueve espacios con banca metálica removible",
+      "product_type_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/producttype/697ef260c36c46dbb48e0afd53dc6342.webp",
+      "created_at": "2026-08-24",
+      "updated_at": "2026-08-24"
+    },
+    "product_name": "Locker Banca 3x3",
+    "description": "Locker metálico de 9 espacios con cuerpo negro, puertas amarillas, ventilación láser y portacandado. Incluye un soporte inferior tubular removible para fácil instalación y una banca metálica negra separada para sentarse.",
+    "is_feature_product": false,
+    "height_cm": "188.00",
+    "depth_cm": "30.00",
+    "width_cm": "94.00",
+    "security": "Porta candado",
+    "price": "370.00",
+    "product_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/product/f5ce996bf5e64cf09d4eb6c7e285ae48.webp",
+    "product_video": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/product/2492d2fbfe1a45aca66814dd179616f0.mp4",
+    "color_images": [
+      {
+        "id": 1,
+        "color_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productcolorimage/5327975e8f184d19aaa99c91ed4c8016.webp",
+        "color_hex": "#FFFF00",
+        "color_name": "Amarillo",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      },
+      {
+        "id": 2,
+        "color_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productcolorimage/b28018b2729449f681978626ab517bdc.webp",
+        "color_hex": "#4169E1",
+        "color_name": "Azul Rey",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      },
+      {
+        "id": 3,
+        "color_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productcolorimage/bda51c5a0aca4fbe8caa721b3e63b813.webp",
+        "color_hex": "#D3D3D3",
+        "color_name": "Gris Claro",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      },
+      {
+        "id": 4,
+        "color_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productcolorimage/7233309ad5c34cb3ba4681083e90e1b1.webp",
+        "color_hex": "#ff0000",
+        "color_name": "Rojo",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      },
+      {
+        "id": 5,
+        "color_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productcolorimage/b1c84e0c3c794604827843cfb12d93ce.webp",
+        "color_hex": "#A020F0",
+        "color_name": "Morado",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      }
+    ],
+    "angle_images": [
+      {
+        "id": 1,
+        "image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productangleimage/d8edeff7eb4f486d94a47ac3a6ca08d6.webp",
+        "angle": "Ángulo Izquierdo",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      },
+      {
+        "id": 2,
+        "image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productangleimage/abbf73f3671242daba327720eb8d8683.webp",
+        "angle": "Ángulo Derecho",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      },
+      {
+        "id": 3,
+        "image": null,
+        "angle": "Frente",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      }
+    ],
+    "created_at": "2026-08-25",
+    "updated_at": "2026-08-25"
+  },
+  {
+    "id": 4,
+    "categories": [3],
+    "categories_detail": [
+      {
+        "id": 3,
+        "category_name": "Empresarial / Comercio",
+        "description": "Mobiliario y soluciones de almacenamiento optimizadas para empresas y comercios.",
+        "category_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/category/34bdfdfca01e47aa905a6acbf6511f81.webp",
+        "created_at": "2026-08-21",
+        "updated_at": "2026-08-21"
+      }
+    ],
+    "category_detail": {
+      "id": 3,
+      "category_name": "Empresarial / Comercio",
+      "description": "Mobiliario y soluciones de almacenamiento optimizadas para empresas y comercios.",
+      "category_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/category/34bdfdfca01e47aa905a6acbf6511f81.webp",
+      "created_at": "2026-08-21",
+      "updated_at": "2026-08-21"
+    },
+    "product_type": 1,
+    "product_type_detail": {
+      "id": 1,
+      "product_type_name": "Lockers",
+      "description": "Casilleros de seguridad individual para custodia de objetos personales.",
+      "product_type_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/producttype/82823335c9a446d1821e32aa83c141b1.webp",
+      "created_at": "2026-08-21",
+      "updated_at": "2026-08-21"
+    },
+    "product_name": "Locker L5",
+    "description": "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+    "is_feature_product": false,
+    "height_cm": "551635.00",
+    "depth_cm": "131.00",
+    "width_cm": "311.00",
+    "security": "Porta candado",
+    "price": "1000000.00",
+    "product_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/product/eba394af6c6c4e298c25f7fc37031f5b.webp",
+    "product_video": null,
+    "color_images": [
+      {
+        "id": 6,
+        "color_image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productcolorimage/50405976350e4d299254a19f50f2a821.webp",
+        "color_hex": "#FF0000",
+        "color_name": "Verde",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      }
+    ],
+    "angle_images": [
+      {
+        "id": 4,
+        "image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productangleimage/cbeafba4b45040238b58f8c56c3893d4.webp",
+        "angle": "IMAGEN1",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      },
+      {
+        "id": 5,
+        "image": "https://imagenes-tu-estante.tuestante.com/tuestante-media-render/productangleimage/a773d5998634487f8b89ce78bcde2fa6.webp",
+        "angle": "IMAGEN2",
+        "created_at": "2026-08-25",
+        "updated_at": "2026-08-25"
+      }
+    ],
+    "created_at": "2026-08-25",
+    "updated_at": "2026-08-25"
+  }
+]
